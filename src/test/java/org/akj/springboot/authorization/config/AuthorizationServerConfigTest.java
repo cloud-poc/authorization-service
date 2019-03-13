@@ -13,12 +13,12 @@ class AuthorizationServerConfigurationTest {
 
 	@Test
 	void test() {
-		String pass = "admin";
+		String pass = "123456";
 		BCryptPasswordEncoder bcryptPasswordEncoder = new BCryptPasswordEncoder();
 		String hashPass = bcryptPasswordEncoder.encode(pass);
 		System.out.println(hashPass);
 
-		boolean f = bcryptPasswordEncoder.matches("admin", hashPass);
+		boolean f = bcryptPasswordEncoder.matches("123456", hashPass);
 		Assert.assertTrue(f);
 	}
 

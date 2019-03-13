@@ -11,8 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "users", schema = "oauth", catalog = "")
-public class Users {
+@Table(name = "users")
+public class Users{
 	private Integer id;
 	private String username;
 	private String nickname;
