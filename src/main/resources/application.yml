@@ -25,7 +25,7 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     pool-name: SpringBootHikariCP
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/oauth?useSSL=false&charset=utf8
+    url: jdbc:mysql://192.168.99.100:3306/oauth?useSSL=false&charset=utf8
     username: jamie
     password: Hsbc1234
     initialization-mode: always
@@ -38,3 +38,9 @@ spring:
     hibernate.ddl-auto: update
     show-sql: true
     database-platform: org.hibernate.dialect.MySQL5Dialect
+    
+  thymeleaf:
+      prefix: classpath:/templates/
+      suffix: .html
+      cache: false
+      enabled: true

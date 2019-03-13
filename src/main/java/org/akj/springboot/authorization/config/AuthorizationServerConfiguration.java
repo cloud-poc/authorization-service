@@ -12,12 +12,16 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.approval.ApprovalStore;
+import org.springframework.security.oauth2.provider.approval.ApprovalStoreUserApprovalHandler;
 import org.springframework.security.oauth2.provider.approval.JdbcApprovalStore;
+import org.springframework.security.oauth2.provider.approval.UserApprovalHandler;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices;
+import org.springframework.security.oauth2.provider.request.DefaultOAuth2RequestFactory;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
 @EnableAuthorizationServer
@@ -30,16 +34,30 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
-//	@Bean("jdbcTokenStore")
-//	public JdbcTokenStore tokenStore() {
-//		return new JdbcTokenStore(dataSource);
-//	}
-
 	@Autowired
 	private TokenStore tokenStore;
 
 	@Autowired
 	private JwtAccessTokenConverter jwtAccessTokenConverter;
+
+	@Bean("jdbcTokenStore")
+	public JdbcTokenStore tokenStore() {
+		return new JdbcTokenStore(dataSource);
+	}
+
+	@Bean
+	public UserApprovalHandler userApprovalHandler() {
+		ApprovalStoreUserApprovalHandler userApprovalHandler = new ApprovalStoreUserApprovalHandler();
+		userApprovalHandler.setApprovalStore(approvalStore());
+		userApprovalHandler.setClientDetailsService(clientDetailsService());
+		userApprovalHandler.setRequestFactory(requestFactory());
+		return userApprovalHandler;
+	}
+
+	@Bean
+	public DefaultOAuth2RequestFactory requestFactory() {
+		return new DefaultOAuth2RequestFactory(clientDetailsService());
+	}
 
 	@Bean("jdbcClientDetailsService")
 	public JdbcClientDetailsService clientDetailsService() {
@@ -59,15 +77,14 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		endpoints.approvalStore(approvalStore()).authorizationCodeServices(authorizationCodeServices())
-//				.tokenServices(tokenServices(endpoints))
-				.authenticationManager(authenticationManager).accessTokenConverter(jwtAccessTokenConverter)
-				.tokenStore(tokenStore);
+				.authenticationManager(authenticationManager).userApprovalHandler(userApprovalHandler())
+				.accessTokenConverter(jwtAccessTokenConverter).tokenStore(tokenStore);
 	}
 
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-		security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()")
-				.allowFormAuthenticationForClients();
+//		security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()")
+//				.allowFormAuthenticationForClients();
 	}
 
 	@Override

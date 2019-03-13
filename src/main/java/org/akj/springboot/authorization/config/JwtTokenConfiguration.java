@@ -15,7 +15,7 @@ public class JwtTokenConfiguration {
 	}
 
 	/**
-	 * token生成处理：指定签名
+	 * token generation: signature
 	 */
 	@Bean
 	public JwtAccessTokenConverter jwtAccessTokenConverter() {
