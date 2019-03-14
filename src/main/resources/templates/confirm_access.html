@@ -10,15 +10,14 @@
 </head>
 <body>
 	<div class="container">
-		<h2 th:text="'Do you authorize [' + ${client_id} + '] to access	your protected resources?'"></h2>
+		<h2 th:text="'Are u going to authorize [' + ${authorizationRequest.clientId} + '] to access	your protected resources?'"></h2>
 		<div style="height: 20px;"></div>
 		<form id="confirmationForm" name="confirmationForm" action="../oauth/authorize" method="post">
 
 			<input name="user_oauth_approval" value="true" type="hidden" /> 
-				<div th:each="item:${scopes}">
+				<div th:each="item:${authorizationRequest.scope}">
 					<input type="radio" th:name="'scope.'+${item}" value="true" hidden="hidden" checked="checked" />
 				</div>
-			</ul>
 			<button class="btn btn-primary" type="submit">Approve</button>
 		</form>
 		<div style="height: 20px;"></div>

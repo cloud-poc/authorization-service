@@ -39,8 +39,8 @@ spring:
     show-sql: true
     database-platform: org.hibernate.dialect.MySQL5Dialect
     
-  thymeleaf:
-      prefix: classpath:/templates/
-      suffix: .html
-      cache: false
-      enabled: true
+security.oauth2.jwt.key-pair:
+  store-pass: Test1234
+  alias: internal-certs
+  file-path: keystore.p12
+      
