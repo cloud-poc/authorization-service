@@ -5,6 +5,7 @@ import java.security.KeyPair;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
@@ -24,6 +25,7 @@ public class JwtTokenConfiguration {
 	private String keyStoreFilePath;
 
 	@Bean
+	@Primary
 	public TokenStore jwtTokenStore() {
 		return new JwtTokenStore(jwtAccessTokenConverter());
 	}

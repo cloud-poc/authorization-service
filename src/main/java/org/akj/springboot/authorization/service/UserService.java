@@ -13,7 +13,7 @@ public class UserService {
 	private UserRepository userRepository;
 
 	/**
-	 * 根据用户名查询用户信息
+	 * retrieve user by user name
 	 * 
 	 * @param username
 	 * @return

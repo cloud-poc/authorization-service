@@ -41,32 +41,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
 
-//        authenticationManagerBuilder.inMemoryAuthentication()
-//                .withUser("irving")
-//                .password(passwordEncoder().encode("123456"))
-//                .roles("read");
-
-		// auth.userDetailsService(userDetailsService())
-		// .passwordEncoder(passwordEncoder());
-
 		authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 		authenticationManagerBuilder.parentAuthenticationManager(authenticationManagerBean());
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable();
-
-		http.authorizeRequests().antMatchers("/oauth/**", "/login").permitAll().anyRequest().authenticated().and()
-				.formLogin().loginPage("/login").permitAll().and().logout().permitAll();
-
-		// 在 UsernamePasswordAuthenticationFilter 前添加 BeforeLoginFilter
-		// http.addFilterBefore(new BeforeLoginFilter(),
-		// UsernamePasswordAuthenticationFilter.class);
-
-//		http.requestMatchers().anyRequest().and().authorizeRequests().antMatchers("/oauth/**").permitAll();
-//
-//		http.csrf().disable();
+		http.csrf().disable().authorizeRequests().antMatchers("/oauth/**", "/login").permitAll().anyRequest()
+				.authenticated().and().formLogin().loginPage("/login").permitAll().and().logout().permitAll();
 	}
 
 	@Override

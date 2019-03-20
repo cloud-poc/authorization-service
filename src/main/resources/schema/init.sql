@@ -90,10 +90,11 @@ CREATE TABLE `users`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
+#$2a$10$utkxMg3/7GYyihwMgL6EOuVpUa7KFQo3SLu2OLKec/dcaMvAVshka --> 123456
 
 INSERT INTO `oauth_client_details` VALUES ('client_1', '', '$2a$10$utkxMg3/7GYyihwMgL6EOuVpUa7KFQo3SLu2OLKec/dcaMvAVshka', 'all,read,write', 'client_credentials', '', 'client_credentials', 7200, NULL, '{}', '');
 INSERT INTO `oauth_client_details` VALUES ('client_2', '', '$2a$10$utkxMg3/7GYyihwMgL6EOuVpUa7KFQo3SLu2OLKec/dcaMvAVshka', 'all,read,write', 'password,refresh_token', '', 'password', 7200, 10000, '{}', '');
 INSERT INTO `oauth_client_details` VALUES ('client_3', '', '$2a$10$utkxMg3/7GYyihwMgL6EOuVpUa7KFQo3SLu2OLKec/dcaMvAVshka', 'all,read,write', 'authorization_code', 'http://localhost:8080/signin,http://localhost:8080/login', 'authorization_code,refresh_token', 7200, 10000, '{}', '');
-INSERT INTO `oauth_client_details` VALUES ('client_test', '', '$2a$10$utkxMg3/7GYyihwMgL6EOuVpUa7KFQo3SLu2OLKec/dcaMvAVshka', 'all,read,write', 'all flow,authorization_code,client_credentials,refresh_token,password,implicit', 'http://localhost:8080/signin,http://localhost:8080/login', '', 7200, 10000, '{}', '');
+INSERT INTO `oauth_client_details` VALUES ('client_4', '', '$2a$10$utkxMg3/7GYyihwMgL6EOuVpUa7KFQo3SLu2OLKec/dcaMvAVshka', 'all,read,write', 'all flow,authorization_code,client_credentials,refresh_token,password,implicit', 'http://localhost:8080/signin,http://localhost:8080/login', '', 7200, 10000, '{}', '');
 
 INSERT INTO `users` VALUES (0, 'jamie', 'Jamie Zhang', '$2a$10$utkxMg3/7GYyihwMgL6EOuVpUa7KFQo3SLu2OLKec/dcaMvAVshka', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL);
