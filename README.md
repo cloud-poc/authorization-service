@@ -1,12 +1,14 @@
 # authorization-service  
 
 # Token generation  
-1. Authorization code: 
+**1. Authorization code: 
+
 * get auth-code  
 request from browser:   
 http://localhost:8080/uaa/oauth/authorize?client_id=client_3&redirect_uri=http://localhost:8080/callback&response_type=code&scope=read  
 response:  
 http://localhost:8080/callback?code=8uYpdo  
+
 * obtain access token using code generated in #1  
 curl -X POST --user client_3:123456 http://localhost:8080/uaa/oauth/token -H "content-type: application/x-www-form-urlencoded" -d "code=8uYpdo&grant_type=authorization_code&redirect_uri=http%3A%2F%2Flocalh ost%3A8080%2Fcallback&scope=read"
 
@@ -23,20 +25,23 @@ response sample：
         "jti": "1db7a685-bb3d-42f3-b6a2-0030ddadd01d"
     }
  
-2.Password  
+**2.Password  
+
 curl -X POST --user client_2:123456 http://localhost:8080/uaa/oauth/token -H "accept: application/json" -H "content-type: application/x-www-form-urlencoded" -d "grant_type=password&username=jamie&password=123456&scope=read"  
   
-3.Client/Server  
+**3.Client/Server  
+
 curl -X POST "http://localhost:8080/uaa/oauth/token" --user client_1:123456 -d "grant_type=client_credentials&scope=read"  
   
-4.implicit  
+**4.implicit 
+
 http://localhost:8080/uaa/oauth/authorize?client_id=client_2&redirect_uri=http://localhost:8080/callback&response_type=token&scope=read&state=abc  
 response sample:  
 
 
     http://localhost:8080/callback#access_token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJqYW1pZSIsInNjb3BlIjpbInJlYWQiXSwib3JnYW5pemF0aW9uIjoiYWtqLm9yZyIsImV4cCI6MTU1MzA4Mjc4NiwiYXV0aG9yaXRpZXMiOlsiMDIxMDk4IiwiMDIxMDQwIiwiUk9MRV9BRE1JTiJdLCJqdGkiOiIwNTNiZDIwMC02ZmM0LTRhYmItYmQ3MC1hNjQyMjNiZWFlN2IiLCJjbGllbnRfaWQiOiJjbGllbnRfMiJ9.Vc2TXHs78PweRnntcfY-KfcXLHD1OdLELMAbDazlfA-aPZuwamSEHQEl7KluFzUjRkbNUV4HAExEELVygXqgAQ8kUmLzKRQ-IdoPh7TZCkRaMIzERIzn9TVKWRaci5wij6Xyr-fPKHMsXyAqAvUux2dYyXaW993l4mdGmMmp6Ub2WF7BIN85EP1iN5MSGQfPwKOk5hUbgku32p8pymBZg5-Y5_1yLgC2WVC9PQgY4zZG7z8v7YMsyl3ueJjeuD08CKV6hX2rAcRrtlrTZBL-BCnOW5xmsk9xWrPNYCOu4mLQWcH3X7rWVDwH9c9ftdtw-8DKCS2brZ5yJeTgmucEgA&token_type=bearer&state=abc&expires_in=7199&organization=akj.org&jti=053bd200-6fc4-4abb-bd70-a64223beae7b  
 
-2.Client registration - Client_id/Client_secret  
+**2.Client registration - Client_id/Client_secret  
 
 
      curl -X POST \
