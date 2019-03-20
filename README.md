@@ -1,7 +1,7 @@
 # authorization-service  
 
 # Token generation  
-**1. Authorization code: 
+__1. Authorization code:__  
 
 * get auth-code  
 request from browser:   
@@ -25,15 +25,15 @@ response sample：
         "jti": "1db7a685-bb3d-42f3-b6a2-0030ddadd01d"
     }
  
-**2.Password  
+__1. Password__  
 
 curl -X POST --user client_2:123456 http://localhost:8080/uaa/oauth/token -H "accept: application/json" -H "content-type: application/x-www-form-urlencoded" -d "grant_type=password&username=jamie&password=123456&scope=read"  
   
-**3.Client/Server  
+__3. Client/Server__  
 
 curl -X POST "http://localhost:8080/uaa/oauth/token" --user client_1:123456 -d "grant_type=client_credentials&scope=read"  
   
-**4.implicit 
+__4. Implicit__ 
 
 http://localhost:8080/uaa/oauth/authorize?client_id=client_2&redirect_uri=http://localhost:8080/callback&response_type=token&scope=read&state=abc  
 response sample:  
@@ -41,7 +41,7 @@ response sample:
 
     http://localhost:8080/callback#access_token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJqYW1pZSIsInNjb3BlIjpbInJlYWQiXSwib3JnYW5pemF0aW9uIjoiYWtqLm9yZyIsImV4cCI6MTU1MzA4Mjc4NiwiYXV0aG9yaXRpZXMiOlsiMDIxMDk4IiwiMDIxMDQwIiwiUk9MRV9BRE1JTiJdLCJqdGkiOiIwNTNiZDIwMC02ZmM0LTRhYmItYmQ3MC1hNjQyMjNiZWFlN2IiLCJjbGllbnRfaWQiOiJjbGllbnRfMiJ9.Vc2TXHs78PweRnntcfY-KfcXLHD1OdLELMAbDazlfA-aPZuwamSEHQEl7KluFzUjRkbNUV4HAExEELVygXqgAQ8kUmLzKRQ-IdoPh7TZCkRaMIzERIzn9TVKWRaci5wij6Xyr-fPKHMsXyAqAvUux2dYyXaW993l4mdGmMmp6Ub2WF7BIN85EP1iN5MSGQfPwKOk5hUbgku32p8pymBZg5-Y5_1yLgC2WVC9PQgY4zZG7z8v7YMsyl3ueJjeuD08CKV6hX2rAcRrtlrTZBL-BCnOW5xmsk9xWrPNYCOu4mLQWcH3X7rWVDwH9c9ftdtw-8DKCS2brZ5yJeTgmucEgA&token_type=bearer&state=abc&expires_in=7199&organization=akj.org&jti=053bd200-6fc4-4abb-bd70-a64223beae7b  
 
-**2.Client registration - Client_id/Client_secret  
+# Client registration - Client_id/Client_secret__  
 
 
      curl -X POST \
@@ -76,7 +76,5 @@ response sample:
     }
   
      
-
-
 
 
