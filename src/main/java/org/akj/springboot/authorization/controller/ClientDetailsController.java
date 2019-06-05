@@ -1,6 +1,5 @@
 package org.akj.springboot.authorization.controller;
 
-import java.lang.annotation.Documented;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
