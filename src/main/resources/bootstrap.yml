@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: authorization-service
+  profiles:    active:    - dev
+  cloud:
+      config:
+        discovery:
+          enabled: true
+          service-id: config-service
+      refresh.enabled: true
+      bus:
+        enabled: true
+  discovery:
+    client:
+      health-indicator:
+        enabled: true
+        include-description: true
+  zipkin.base-url: ${ZIPKIN_BASE_URL:http://localhost:9411/}
+  sleuth.sampler.probability: 1
+  
+server:
+  port: 8080
+  servlet:    context-path: /uaa
+  use-forward-headers: false
+  
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+eureka.client.service-url:
+  defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761/eureka/}
+
+      
