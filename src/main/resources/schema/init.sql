@@ -6,6 +6,7 @@ create table oauth_client_token (
   user_name VARCHAR(255),
   client_id VARCHAR(255)
 );
+
 drop table if exists oauth_client_details;
 CREATE TABLE oauth_client_details (
   client_id varchar(255) NOT NULL,
@@ -20,6 +21,7 @@ CREATE TABLE oauth_client_details (
   additional_information varchar(255) DEFAULT NULL,
   autoapprove varchar(255) DEFAULT NULL
 );
+
 drop table if exists oauth_access_token;
 create table `oauth_access_token` (
   token_id VARCHAR(255),
@@ -30,20 +32,22 @@ create table `oauth_access_token` (
   authentication LONGBLOB,
   refresh_token VARCHAR(255)
 );
+
 drop table if exists oauth_refresh_token;
 create table `oauth_refresh_token`(
   token_id VARCHAR(255),
   token LONGBLOB,
   authentication LONGBLOB
 );
+
 drop table if exists authority;
 CREATE TABLE authority (
   id  integer,
   authority varchar(255),
   primary key (id)
 );
-drop table if exists credentials;
 
+drop table if exists credentials;
 CREATE TABLE credentials (
   id  integer,
   enabled boolean not null,
@@ -52,15 +56,18 @@ CREATE TABLE credentials (
   version integer,
   primary key (id)
 );
+
 drop table if exists credentials_authorities;
 CREATE TABLE credentials_authorities (
   credentials_id bigint not null,
   authorities_id bigint not null
 );
+
 drop table if exists oauth_code;
 create table oauth_code (
-  code VARCHAR(255), authentication VARBINARY(255)
+  code VARCHAR(255), authentication LONGBLOB
 );
+
 drop table if exists oauth_approvals;
 create table oauth_approvals (
     userId VARCHAR(255),

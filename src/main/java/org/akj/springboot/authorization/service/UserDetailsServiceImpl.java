@@ -4,25 +4,26 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.akj.springboot.authorization.entity.Users;
+import org.akj.springboot.authorization.repository.UserDetailsRepository;
+import org.akj.springboot.common.exception.BusinessException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service("userDetailService")
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UserService userService;
+    private UserDetailsRepository userDetailsRepository;
 
     @Override
     public UserDetails loadUserByUsername(String userName) {
-        Users user = userService.findByUsername(userName);
+        Users user = userDetailsRepository.findByUsername(userName);
         if (null == user) {
-            throw new UsernameNotFoundException(userName);
+            throw new BusinessException("ERROR-010-001","User " + userName + " does not exists");
         }
 
         // List<SimpleGrantedAuthority> authorities = new ArrayList<>();

@@ -1,4 +1,4 @@
-package org.akj.springboot.authorization.config;
+package org.akj.springboot.authorization.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;

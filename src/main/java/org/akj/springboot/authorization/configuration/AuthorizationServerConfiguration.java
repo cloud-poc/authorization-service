@@ -1,4 +1,4 @@
-package org.akj.springboot.authorization.config;
+package org.akj.springboot.authorization.configuration;
 
 import java.util.Arrays;
 
@@ -90,7 +90,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		endpoints.approvalStore(approvalStore()).authorizationCodeServices(authorizationCodeServices())
 				.authenticationManager(authenticationManager).userApprovalHandler(userApprovalHandler())
-				// .accessTokenConverter(jwtAccessTokenConverter)
 				.tokenStore(tokenStore).userDetailsService(userDetailsServices);
 
 		TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
@@ -100,8 +99,12 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-		security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()")
-				.allowFormAuthenticationForClients();
+		security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()").allowFormAuthenticationForClients();
+		// security.tokenKeyAccess("isAuthenticated()").checkTokenAccess("isAuthenticated()")
+		//		.allowFormAuthenticationForClients();
+
+		// security.tokenKeyAccess("isAnonymous() || hasAuthority('ROLE_TRUSTED_CLIENT')")
+		// .checkTokenAccess("hasAuthority('ROLE_TRUSTED_CLIENT')").allowFormAuthenticationForClients();
 	}
 
 	@Override

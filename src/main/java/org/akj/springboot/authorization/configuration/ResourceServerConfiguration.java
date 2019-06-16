@@ -1,4 +1,4 @@
-package org.akj.springboot.authorization.config;
+package org.akj.springboot.authorization.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

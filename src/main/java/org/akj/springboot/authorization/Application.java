@@ -9,7 +9,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @author Jamie Y L Zhang
  */
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "org.akj.springboot")
 @EnableDiscoveryClient
 public class Application {
 	

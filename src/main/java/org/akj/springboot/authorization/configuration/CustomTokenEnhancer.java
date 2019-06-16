@@ -1,4 +1,4 @@
-package org.akj.springboot.authorization.config;
+package org.akj.springboot.authorization.configuration;
 
 import java.util.HashMap;
 import java.util.Map;

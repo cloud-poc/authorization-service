@@ -3,7 +3,7 @@ package org.akj.springboot.authorization.repository;
 import org.akj.springboot.authorization.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<Users, Integer> {
+public interface UserDetailsRepository extends JpaRepository<Users, Integer> {
 
 	/**
 	 * search user by user name
@@ -13,5 +13,4 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
 	 */
 	Users findByUsername(String userName);
 
-	// Users findByUsernameAndMobile();
 }

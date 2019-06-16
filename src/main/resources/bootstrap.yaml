@@ -1,22 +1,25 @@
-spring:
-  application:
-    name: authorization-service
-  profiles:    active:    - dev
-  cloud:
-    config:
-      discovery:
-        enabled: true
-        service-id: config-service
-    refresh.enabled: true
-    bus.enabled: true
-    
-  zipkin.base-url: ${ZIPKIN_BASE_URL:http://localhost:9411/}
-  sleuth.sampler.probability: 1
-  
 server:
   port: 8044
   servlet:    context-path: /uaa
   use-forward-headers: false
+
+spring:
+  application:
+    name: authorization-service  profiles:    active:
+    - dev
+#  cloud:
+#    config:
+#      discovery:
+#        enabled: ${CONFIG_DISCOVERY_ENABLED:false}
+#        service-id: ${CONFIG_DISCOVERY_SERVICE_ID:config-service}
+#      uri:
+#      - ${CONFIG_SERVICE_URL:http://localhost:8888}
+#    refresh.enabled: true
+#    bus:
+#      enabled: true
+    
+  zipkin.base-url: ${ZIPKIN_BASE_URL:http://localhost:9411/}
+  sleuth.sampler.probability: 1
   
 eureka.client.service-url:
   defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761/eureka/}
@@ -26,6 +29,4 @@ management:
     web:
       exposure:
         include: '*'
-
-
-      
+        
