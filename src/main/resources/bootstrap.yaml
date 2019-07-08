@@ -1,6 +1,5 @@
 server:
   port: 8044
-  servlet:    context-path: /uaa
   use-forward-headers: false
 
 spring:
@@ -36,5 +35,8 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,bus-refresh
+        include: health,info,bus-refresh,hystrix.stream,prometheus,metrics
+  metrics:
+    export.prometheus.enabled: true
+    tags.application: ${spring.application.name}
         
